@@ -1,0 +1,22 @@
+class Solution {
+private:
+    long long mod = 1e9 + 7;
+    int power(long long x,long long n){
+        if(n==0) return 1;
+        long long half = power(x,n/2);
+        if(n%2==0) return half*half %mod;
+        else return x*half*half%mod;
+    }
+public:
+    int countGoodNumbers(long long n) {
+        long long evenpow = (n+1)/2;
+        long long oddpow = n/2;
+        long long part1 = power(5,evenpow);
+        long long part2 = power(4,oddpow);
+
+        return (part1*part2) % mod;
+
+
+
+    }
+};
