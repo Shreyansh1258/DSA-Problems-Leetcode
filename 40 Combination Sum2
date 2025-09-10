@@ -1,0 +1,25 @@
+class Solution {
+private:
+    private: void solve(vector<int>& nums, int target,int i,vector<int> &path,vector<vector<int>>& ans){
+        if(target==0){
+            ans.push_back(path);
+            return;
+        }
+        for(int j=i;j<nums.size();j++){
+            if(j>i && nums[j]==nums[j-1]) continue;
+            if(nums[j]>target) break;
+            path.push_back(nums[j]);
+            solve(nums,target-nums[j],j+1,path,ans);
+            path.pop_back();
+         }
+    }
+public:
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        vector<int> path;
+        vector<vector<int>> ans;
+        solve(nums,target,0,path,ans);
+        return ans;
+    }
+    
+};
